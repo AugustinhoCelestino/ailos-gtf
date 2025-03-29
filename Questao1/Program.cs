@@ -8,42 +8,42 @@ namespace Questao1
         static void Main(string[] args)
         {
 
-            ContaBancaria conta;
+            ContaBancaria account;
 
             Console.Write("Entre o número da conta: ");
-            int numero = int.Parse(Console.ReadLine());
+            int accountNumber = int.Parse(Console.ReadLine());
             Console.Write("Entre o titular da conta: ");
-            string titular = Console.ReadLine();
+            string accountOwner = Console.ReadLine();
             Console.Write("Haverá depósito inicial (s/n)? ");
-            char resp = char.Parse(Console.ReadLine());
-            if (resp == 's' || resp == 'S')
+            char answer = char.Parse(Console.ReadLine());
+            if (answer == 's' || answer == 'S')
             {
                 Console.Write("Entre o valor de depósito inicial: ");
-                double depositoInicial = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                conta = new ContaBancaria(numero, titular, depositoInicial);
+                double initialDeposit = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                account = new ContaBancaria(accountNumber, accountOwner, initialDeposit);
             }
             else
             {
-                conta = new ContaBancaria(numero, titular);
+                account = new ContaBancaria(accountNumber, accountOwner);
             }
 
             Console.WriteLine();
             Console.WriteLine("Dados da conta:");
-            Console.WriteLine(conta.ShowAccountInfo());
+            Console.WriteLine(account.ShowAccountInfo());
 
             Console.WriteLine();
             Console.Write("Entre um valor para depósito: ");
-            double quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            conta.Deposito(quantia);
+            double amount = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            account.Deposit(amount);
             Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta.ShowAccountInfo());
+            Console.WriteLine(account.ShowAccountInfo());
 
             Console.WriteLine();
             Console.Write("Entre um valor para saque: ");
-            quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            conta.Saque(quantia);
+            amount = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            account.Withdraw(amount);
             Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta.ShowAccountInfo());
+            Console.WriteLine(account.ShowAccountInfo());
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Aperte qualquer teclada para fechar...");

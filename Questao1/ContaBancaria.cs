@@ -4,38 +4,38 @@ namespace Questao1
 {
     class ContaBancaria
     {
-        public ContaBancaria(int numero, string titular, double depositoinicial)
+        public ContaBancaria(int accountNumber, string accountOwner, double depositoinicial)
         {
-            this.Saldo = depositoinicial;
-            this.Numero = numero; 
-            this.Titular = titular;
+            this.Balance = depositoinicial;
+            this.AccountNumber = accountNumber; 
+            this.AccountOwner = accountOwner;
         }
-        public ContaBancaria(int numero, string titular)
+        public ContaBancaria(int accountNumber, string accountOwner)
         {
-            this.Numero = numero;
-            this.Titular = titular;
-            this.Saldo = 0;
-        }
-
-        public int Numero { get; set; } = 0;
-        public string Titular { get; set; } = string.Empty;
-        protected double Saldo { get; set; } = 0;
-        protected double TaxaSaque { get; set; } = 3.50;
-
-        public void Deposito(double quantia)
-        {
-            this.Saldo += quantia;
+            this.AccountNumber = accountNumber;
+            this.AccountOwner = accountOwner;
+            this.Balance = 0;
         }
 
-        public void Saque(double quantia)
+        public int AccountNumber { get; set; } = 0;
+        public string AccountOwner { get; set; } = string.Empty;
+        protected double Balance { get; set; } = 0;
+        protected double WithdrawTax { get; set; } = 3.50;
+
+        public void Deposit(double amount)
         {
-            this.Saldo -= quantia;
-            this.Saldo -= this.TaxaSaque;
+            this.Balance += amount;
+        }
+
+        public void Withdraw(double amount)
+        {
+            this.Balance -= amount;
+            this.Balance -= this.WithdrawTax;
         }
 
         public string ShowAccountInfo()
         {
-            string accountInfo = $"Conta {this.Numero}, Titular {this.Titular}, Saldo: {this.Saldo:C}";
+            string accountInfo = $"Conta {this.AccountNumber}, Titular {this.AccountOwner}, Saldo: {this.Balance:C}";
 
             return accountInfo;
         }
