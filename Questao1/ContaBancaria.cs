@@ -1,4 +1,6 @@
-﻿namespace Questao1
+﻿using System;
+
+namespace Questao1
 {
     class ContaBancaria
     {
@@ -17,7 +19,8 @@
 
         public int Numero { get; set; } = 0;
         public string Titular { get; set; } = string.Empty;
-        public double Saldo { get; set; } = 0;
+        protected double Saldo { get; set; } = 0;
+        protected double TaxaSaque { get; set; } = 3.50;
 
         public void Deposito(double quantia)
         {
@@ -27,6 +30,14 @@
         public void Saque(double quantia)
         {
             this.Saldo -= quantia;
+            this.Saldo -= this.TaxaSaque;
+        }
+
+        public string ShowAccountInfo()
+        {
+            string accountInfo = $"Conta {this.Numero}, Titular {this.Titular}, Saldo: {this.Saldo:C}";
+
+            return accountInfo;
         }
     }
 }
