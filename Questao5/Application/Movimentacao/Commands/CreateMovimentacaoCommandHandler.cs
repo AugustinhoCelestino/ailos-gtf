@@ -17,7 +17,7 @@ internal sealed class CreateMovimentacaoCommandHandler : ICommandHandler<CreateM
 
     public async Task<Result> Handle(CreateMovimentacaoCommand request, CancellationToken cancellationToken)
     {
-        Domain.Entities.ContaCorrente contaCorrente = await _contaCorrenteRepository.GetByIdAsync(request.IdContaCorrente);
+        Domain.Entities.ContaCorrente contaCorrente = await _contaCorrenteRepository.GetByIdAsync(request.IdContaCorrente.ToString());
 
         if (contaCorrente == null)
         {

@@ -1,4 +1,5 @@
 using MediatR;
+using Questao5.Application.Behaviors;
 using Questao5.Domain.Repositories;
 using Questao5.Infrastructure.Sqlite;
 using Questao5.Persistence.Repository;
@@ -16,6 +17,7 @@ builder.Services.AddSingleton(new DatabaseConfig { Name = builder.Configuration.
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
 builder.Services.AddScoped<IContaCorrenteRepository, ContaCorrenteRepository>();
 builder.Services.AddScoped<IMovimentacaoRepository, MovimentacaoRepository>();
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(IdempotentCommandPipelineBehavior<,>));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

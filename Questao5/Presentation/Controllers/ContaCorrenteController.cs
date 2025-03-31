@@ -14,9 +14,24 @@ public sealed class ContaCorrenteController : ApiController
     public ContaCorrenteController(ISender sender) : base(sender) { }
   
     [HttpPost("Movimentacao")]
-    public async Task<IActionResult> MovimentacaoContaCorrente([FromBody] CreateMovimentacaoCommand request, CancellationToken cancellationToken)
+    public async Task<IActionResult> MovimentacaoContaCorrente(
+        [FromBody] CreateMovimentacaoRequest request, 
+        [FromHeader(Name = "X-Idenpotency-Key")] string requestId,  
+        CancellationToken cancellationToken)
     {
-        Result result = await Sender.Send(request, cancellationToken);
+        if (!Guid.TryParse(requestId, out Guid parsedRequestId))
+        {
+            return BadRequest();
+        }
+
+        var command = new CreateMovimentacaoCommand(
+            parsedRequestId,
+            request.IdContaCorrente,
+            request.Valor,
+            request.TipoMovimento
+            );
+
+        var result = await Sender.Send(command, cancellationToken);
 
         return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
