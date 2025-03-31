@@ -39,7 +39,7 @@
     <Folder Include="Infrastructure\Database\CommandStore\Responses\" />
     <Folder Include="Infrastructure\Database\QueryStore\Requests\" />
     <Folder Include="Infrastructure\Database\QueryStore\Responses\" />
-    <Folder Include="Presentation\" />
+    <Folder Include="Infrastructure\Services\" />
   </ItemGroup>
 
 </Project>
